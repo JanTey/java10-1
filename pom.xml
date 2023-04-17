@@ -62,7 +62,7 @@
                                         <limit>
                                             <counter>BRANCH</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>1.0</minimum>
+                                            <minimum>100%</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
@@ -73,4 +73,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
