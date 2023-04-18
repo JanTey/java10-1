@@ -52,6 +52,7 @@ public class Radio {
 
     public void setNextRadioVolume() {
         if (currentRadioVolume == maxRadioVolume) {
+            return;
         } else {
             this.currentRadioVolume = currentRadioVolume + 1;
         }
@@ -60,6 +61,7 @@ public class Radio {
 
     public void setPrevRadioVolume() {
         if (currentRadioVolume == minRadioVolume) {
+            return;
         } else {
             this.currentRadioVolume = currentRadioVolume - 1;
         }
