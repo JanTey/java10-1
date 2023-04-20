@@ -27,6 +27,56 @@ public class RadioTest {
 
     @ParameterizedTest
     @CsvSource(value = {
+            "6, 6",   // анализ критического пути
+            "-15, 0", // негативный
+            "20, 0",  // негативный
+            "-1, 0",  // нижняя граница
+            "0, 0",   // нижняя граница
+            "1, 1",   // нижняя граница
+            "10, 10",   // верхняя граница
+            "11, 11",   // верхняя граница
+            "12, 0",  // верхняя граница
+    })
+    void setSelectRadioStationNum(int inputSelectRadioStation, int expectedRadioStation) {
+        Radio rad = new Radio(12);
+        rad.setSelectRadioStation(inputSelectRadioStation);
+        assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "6, 7",   // анализ критического пути
+            "0, 1",   // нижняя граница
+            "1, 2",   // нижняя граница
+            "10, 11",   // верхняя граница
+            "11, 0",   // верхняя граница
+
+    })
+    void setNextRadioStationNum(int oldCurrentRadioStation, int expectedRadioStation) {
+        Radio rad = new Radio(12);
+        rad.setCurrentRadioStation(oldCurrentRadioStation);
+        rad.setNextRadioStation();
+        assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "6, 5",   // анализ критического пути
+            "0, 11",   // нижняя граница
+            "1, 0",   // нижняя граница
+            "10, 9",   // верхняя граница
+            "11, 10",   // верхняя граница
+
+    })
+    void setPrevRadioStationNum(int oldSelectRadioStation, int expectedRadioStation) {
+        Radio rad = new Radio(12);
+        rad.setSelectRadioStation(oldSelectRadioStation);
+        rad.setPrevRadioStation();
+        assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
             "5, 6",   // анализ критического пути
             "0, 1",   // нижняя граница
             "1, 2",   // нижняя граница

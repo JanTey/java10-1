@@ -8,6 +8,18 @@ public class Radio {
     int minRadioVolume = 0;
     int maxRadioVolume = 100;
     int currentRadioVolume;
+    private int numStations;
+
+    // Конструктор с одним параметром
+    public Radio(int numStations) {
+        this.numStations = numStations;
+        this.maxRadioStation = numStations - 1;
+    }
+
+    // Конструктор без параметров, с установкой значения по умолчанию
+    public Radio() {
+        this.numStations = 10; // Устанавливаем значение по умолчанию в 10
+    }
 
     public int getCurrentRadioStation() {
         return currentRadioStation;
