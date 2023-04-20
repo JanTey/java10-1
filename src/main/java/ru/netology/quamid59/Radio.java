@@ -2,7 +2,7 @@ package ru.netology.quamid59;
 
 public class Radio {
     int minRadioStation = 0;
-    int maxRadioStation = 9;
+    int maxRadioStation;
     int currentRadioStation;
 
     int minRadioVolume = 0;
@@ -19,6 +19,7 @@ public class Radio {
     // Конструктор без параметров, с установкой значения по умолчанию
     public Radio() {
         this.numStations = 10; // Устанавливаем значение по умолчанию в 10
+        this.maxRadioStation = numStations - 1;
     }
 
     public int getCurrentRadioStation() {
