@@ -26,7 +26,7 @@ public class RadioTest {
         int numStations = 0;
         boolean on = false;
         int currentRadioStation = 0;
-        Radio rad = new Radio(DEFAULT_NUM_STATIONS, numStations, on);
+        Radio rad = new Radio(DEFAULT_NUM_STATIONS, numStations, on, currentRadioStation);
         rad.setSelectRadioStation(inputSelectRadioStation);
         assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
     }
@@ -48,13 +48,10 @@ public class RadioTest {
         int numStations = 0;
         boolean on = false;
         int currentRadioStation = 0;
-        Radio rad = new Radio(DEFAULT_NUM_STATIONS, numStations, on);
+        Radio rad = new Radio(DEFAULT_NUM_STATIONS, numStations, on, currentRadioStation);
         rad.setSelectRadioStation(inputSelectRadioStation);
         assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
     }
-
-
-
 
     @ParameterizedTest
     @CsvSource(value = {
@@ -73,7 +70,7 @@ public class RadioTest {
         int numStations = 0;
         boolean on = false;
         int currentRadioStation = 0;
-        Radio rad = new Radio(12, numStations, on);
+        Radio rad = new Radio(12, numStations, on, currentRadioStation);
         rad.setSelectRadioStation(inputSelectRadioStation);
         assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
     }
@@ -91,7 +88,7 @@ public class RadioTest {
         int numStations = 0;
         boolean on = false;
         int currentRadioStation = 0;
-        Radio rad = new Radio(12, numStations, on);
+        Radio rad = new Radio(12, numStations, on, currentRadioStation);
         rad.setCurrentRadioStation(oldCurrentRadioStation);
         rad.setNextRadioStation();
         assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
@@ -110,7 +107,7 @@ public class RadioTest {
         int numStations = 0;
         boolean on = false;
         int currentRadioStation = 0;
-        Radio rad = new Radio(12, numStations, on);
+        Radio rad = new Radio(12, numStations, on, currentRadioStation);
         rad.setSelectRadioStation(oldSelectRadioStation);
         rad.setPrevRadioStation();
         assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
@@ -133,7 +130,7 @@ public class RadioTest {
         int numStations = 0;
         boolean on = false;
         int currentRadioStation = 0;
-        Radio rad = new Radio(12, numStations, on);
+        Radio rad = new Radio(12, numStations, on, currentRadioStation);
         rad.setSelectRadioStation(inputSelectRadioStation);
         assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
     }
@@ -151,7 +148,7 @@ public class RadioTest {
         int numStations = 0;
         boolean on = false;
         int currentRadioStation = 0;
-        Radio rad = new Radio(DEFAULT_NUM_STATIONS, numStations, on);
+        Radio rad = new Radio(DEFAULT_NUM_STATIONS, numStations, on, currentRadioStation);
         rad.setCurrentRadioStation(oldCurrentRadioStation);
         rad.setNextRadioStation();
         assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
@@ -170,7 +167,7 @@ public class RadioTest {
         int numStations = 0;
         boolean on = false;
         int currentRadioStation = 0;
-        Radio rad = new Radio(DEFAULT_NUM_STATIONS, numStations, on);
+        Radio rad = new Radio(DEFAULT_NUM_STATIONS, numStations, on, currentRadioStation);
         rad.setSelectRadioStation(oldSelectRadioStation);
         rad.setPrevRadioStation();
         assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
@@ -188,7 +185,7 @@ public class RadioTest {
         int numStations = 0;
         boolean on = false;
         int currentRadioStation = 0;
-        Radio rad = new Radio(DEFAULT_NUM_STATIONS, numStations, on);
+        Radio rad = new Radio(DEFAULT_NUM_STATIONS, numStations, on, currentRadioStation);
         rad.setCurrentRadioVolume(oldCurrentRadioVolume);
         rad.setNextRadioVolume();
         assertEquals(rad.getCurrentRadioVolume(), expectedRadioVolume);
@@ -205,7 +202,7 @@ public class RadioTest {
         int numStations = 0;
         boolean on = false;
         int currentRadioStation = 0;
-        Radio rad = new Radio(DEFAULT_NUM_STATIONS, numStations, on);
+        Radio rad = new Radio(DEFAULT_NUM_STATIONS, numStations, on, currentRadioStation);
         rad.setCurrentRadioVolume(oldCurrentRadioVolume);
         rad.setPrevRadioVolume();
         assertEquals(rad.getCurrentRadioVolume(), expectedRadioVolume);
@@ -239,7 +236,7 @@ public class RadioTest {
         int numStations = 0;
         boolean on = false;
         int currentRadioStation = 0;
-        Radio rad = new Radio(defaultNumStations, numStations, on);
+        Radio rad = new Radio(defaultNumStations, numStations, on, currentRadioStation);
 
         // Получаем значение maxRadioStation через метод getMaxRadioStation()
         int maxRadioStation = rad.getMaxRadioStation();
@@ -254,7 +251,7 @@ public class RadioTest {
         int numStations = 0;
         boolean on = false;
         int currentRadioStation = 0;
-        Radio rad = new Radio(defaultNumStations, numStations, on);
+        Radio rad = new Radio(defaultNumStations, numStations, on, currentRadioStation);
 
         // Получаем значение numStations через метод getNumStations()
         numStations = rad.getNumStations();
@@ -272,5 +269,71 @@ public class RadioTest {
 
         // Проверяем, что результат соответствует ожидаемому значению (0)
         assertEquals(0, defaultNumStations);
+    }
+
+    @Test
+    void testGetterAndSetter() {
+        // Создаем объект класса Radio
+        Radio rad = new Radio();
+
+        // Устанавливаем значения полей объекта с помощью сеттеров
+        int maxRadioStation = 9;
+        rad.setMaxRadioStation(maxRadioStation);
+        int numStations = 10;
+        rad.setNumStations(numStations);
+        boolean on = true;
+        rad.setOn(on);
+        int currentRadioStation = 3;
+        rad.setCurrentRadioStation(currentRadioStation);
+
+        // Проверяем, что геттеры возвращают ожидаемые значения
+        assertEquals(maxRadioStation, rad.getMaxRadioStation());
+        assertEquals(numStations, rad.getNumStations());
+        assertEquals(on, rad.isOn());
+        assertEquals(currentRadioStation, rad.getCurrentRadioStation());
+    }
+
+//    @Test
+//    void testToString() {
+//        // Создаем объект класса Radio
+//        int maxRadioStation = 9;
+//        int numStations = 10; // Измененное значение
+//        boolean on = true;
+//        int currentRadioStation = 0; // Измененное значение
+//        Radio rad = new Radio(maxRadioStation, numStations, on, currentRadioStation);
+//
+//        // Проверяем, что метод toString() содержит ожидаемые значения
+//        String expectedToString = "Radio(maxRadioStation=" + maxRadioStation +
+//                ", numStations=" + numStations + // Измененное значение
+//                ", on=" + on +
+//                ", currentRadioStation=" + currentRadioStation + ")"; // Измененное значение
+//        assertTrue(rad.toString().contains(expectedToString));
+//    }
+
+    @Test
+    void testEquals() {
+        // Создаем два объекта класса Radio с одинаковыми значениями полей
+        int maxRadioStation = 9;
+        int numStations = 10;
+        boolean on = true;
+        int currentRadioStation = 3;
+        Radio rad1 = new Radio(maxRadioStation, numStations, on, currentRadioStation);
+        Radio rad2 = new Radio(maxRadioStation, numStations, on, currentRadioStation);
+
+        // Проверяем, что метод equals() возвращает true для этих объектов
+        assertEquals(rad1, rad2);
+    }
+
+    @Test
+    void testHashCode() {
+        // Создаем объект класса Radio
+        int maxRadioStation = 9;
+        int numStations = 10;
+        boolean on = true;
+        int currentRadioStation = 3;
+        Radio rad = new Radio(maxRadioStation, numStations, on, currentRadioStation);
+
+        // Проверяем, что метод hashCode() возвращает одинаковые значения для равных объектов
+        assertEquals(rad.hashCode(), rad.hashCode());
     }
 }

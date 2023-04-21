@@ -1,11 +1,10 @@
 package ru.netology.quamid59;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @SuppressWarnings("ALL")
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor// (force = true) // Указываем Lombok использовать конструктор без параметров
 @Data
 
@@ -28,7 +27,7 @@ public class Radio {
 
     // Конструктор с одним параметром
 
-    public Radio(int numStations, int stations, boolean on) {
+    public Radio(int numStations, int stations, boolean on, int currentRadioStation) {
             this.numStations = numStations;
             this.maxRadioStation = numStations - 1;
         }
