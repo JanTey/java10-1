@@ -1,26 +1,37 @@
 package ru.netology.quamid59;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@SuppressWarnings("ALL")
+@AllArgsConstructor
+@NoArgsConstructor// (force = true) // Указываем Lombok использовать конструктор без параметров
+@Data
+
 public class Radio {
-    int minRadioStation = 0;
-    int maxRadioStation;
-    int currentRadioStation;
-
-    int minRadioVolume = 0;
-    int maxRadioVolume = 100;
-    int currentRadioVolume;
+    private static final int DEFAULT_NUM_STATIONS = 10;
+    private int minRadioStation = 0;
+    private int maxRadioStation;
+    private int currentRadioStation;
+    private int minRadioVolume = 0;
+    private int maxRadioVolume = 100;
+    private int currentRadioVolume;
     private int numStations;
-
-    // Конструктор с одним параметром
-    public Radio(int numStations) {
-        this.numStations = numStations;
-        this.maxRadioStation = numStations - 1;
-    }
+    private boolean on;
 
     // Конструктор без параметров, с установкой значения по умолчанию
-    public Radio() {
-        this.numStations = 10; // Устанавливаем значение по умолчанию в 10
-        this.maxRadioStation = numStations - 1;
-    }
+//    public Radio() {
+//        this.numStations = DEFAULT_NUM_STATIONS; // Устанавливаем значение по умолчанию в 10
+//        this.maxRadioStation = numStations - 1;
+//    }
+
+    // Конструктор с одним параметром
+
+    public Radio(int numStations, int stations, boolean on) {
+            this.numStations = numStations;
+            this.maxRadioStation = numStations - 1;
+        }
 
     public int getCurrentRadioStation() {
         return currentRadioStation;
@@ -43,7 +54,6 @@ public class Radio {
         } else {
             this.currentRadioStation = currentRadioStation + 1;
         }
-
     }
 
     public void setPrevRadioStation() {
@@ -52,7 +62,6 @@ public class Radio {
         } else {
             this.currentRadioStation = currentRadioStation - 1;
         }
-
     }
 
     public int getCurrentRadioVolume() {
@@ -69,7 +78,6 @@ public class Radio {
         } else {
             this.currentRadioVolume = currentRadioVolume + 1;
         }
-
     }
 
     public void setPrevRadioVolume() {
@@ -78,7 +86,13 @@ public class Radio {
         } else {
             this.currentRadioVolume = currentRadioVolume - 1;
         }
-
     }
 
+    public boolean isOn() {
+        return on;
+    }
+
+    public int getDefaultNumStations() {
+        return 0;
+    }
 }
