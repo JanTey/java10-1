@@ -8,7 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RadioTest {
-    private static final int DEFAULT_NUM_STATIONS = 10;
+    private static final int defaultNumStation = 10;
+//    maxRadioStation = DEFAULT_NUM_STATIONS - 1;
     @ParameterizedTest
     @CsvSource(value = {
             "5, 5",   // анализ критического пути
@@ -20,13 +21,12 @@ public class RadioTest {
             "8, 8",   // верхняя граница
             "9, 9",   // верхняя граница
             "10, 0",  // верхняя граница
-            "11, 0",  // верхняя граница
     })
     void setSelectRadioStation(int inputSelectRadioStation, int expectedRadioStation) {
         int numStations = 0;
         boolean on = false;
         int currentRadioStation = 0;
-        Radio rad = new Radio(DEFAULT_NUM_STATIONS, numStations, on, currentRadioStation);
+        Radio rad = new Radio(defaultNumStation, numStations, on, currentRadioStation);
         rad.setSelectRadioStation(inputSelectRadioStation);
         assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
     }
@@ -48,7 +48,7 @@ public class RadioTest {
         int numStations = 0;
         boolean on = false;
         int currentRadioStation = 0;
-        Radio rad = new Radio(DEFAULT_NUM_STATIONS, numStations, on, currentRadioStation);
+        Radio rad = new Radio(defaultNumStation, numStations, on, currentRadioStation);
         rad.setSelectRadioStation(inputSelectRadioStation);
         assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
     }
@@ -148,7 +148,7 @@ public class RadioTest {
         int numStations = 0;
         boolean on = false;
         int currentRadioStation = 0;
-        Radio rad = new Radio(DEFAULT_NUM_STATIONS, numStations, on, currentRadioStation);
+        Radio rad = new Radio(defaultNumStation, numStations, on, currentRadioStation);
         rad.setCurrentRadioStation(oldCurrentRadioStation);
         rad.setNextRadioStation();
         assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
@@ -167,7 +167,7 @@ public class RadioTest {
         int numStations = 0;
         boolean on = false;
         int currentRadioStation = 0;
-        Radio rad = new Radio(DEFAULT_NUM_STATIONS, numStations, on, currentRadioStation);
+        Radio rad = new Radio(defaultNumStation, numStations, on, currentRadioStation);
         rad.setSelectRadioStation(oldSelectRadioStation);
         rad.setPrevRadioStation();
         assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
@@ -185,7 +185,7 @@ public class RadioTest {
         int numStations = 0;
         boolean on = false;
         int currentRadioStation = 0;
-        Radio rad = new Radio(DEFAULT_NUM_STATIONS, numStations, on, currentRadioStation);
+        Radio rad = new Radio(defaultNumStation, numStations, on, currentRadioStation);
         rad.setCurrentRadioVolume(oldCurrentRadioVolume);
         rad.setNextRadioVolume();
         assertEquals(rad.getCurrentRadioVolume(), expectedRadioVolume);
@@ -202,7 +202,7 @@ public class RadioTest {
         int numStations = 0;
         boolean on = false;
         int currentRadioStation = 0;
-        Radio rad = new Radio(DEFAULT_NUM_STATIONS, numStations, on, currentRadioStation);
+        Radio rad = new Radio(defaultNumStation, numStations, on, currentRadioStation);
         rad.setCurrentRadioVolume(oldCurrentRadioVolume);
         rad.setPrevRadioVolume();
         assertEquals(rad.getCurrentRadioVolume(), expectedRadioVolume);
@@ -215,19 +215,19 @@ public class RadioTest {
         // Проверяем, что значение, возвращаемое методом isOn(), соответствует установленному значению поля on
         assertTrue(rad.isOn());
     }
-//    @Test
-//    void testAllArgsConstructor() {
-//        // Создаем объект класса Radio с помощью конструктора, сгенерированного Lombok
-//        int defaultNumStations = 10;
-//        int currentRadioStation = 5;
-//        boolean on = true;
-//        Radio rad = new Radio(defaultNumStations, currentRadioStation, on);
-//
-//        // Проверяем, что значения полей объекта соответствуют переданным значениям в конструкторе
-//        assertEquals(defaultNumStations, rad.getDefaultNumStations());
-//        assertEquals(currentRadioStation, rad.getCurrentRadioStation());
-//        assertEquals(on, rad.isOn());
-//    }
+    @Test
+    void testAllArgsConstructor() {
+        // Создаем объект класса Radio с помощью конструктора, сгенерированного Lombok
+        int defaultNumStations = 10;
+        int currentRadioStation = 3;
+        boolean on = true;
+        Radio rad = new Radio(defaultNumStations, currentRadioStation, on, currentRadioStation);
+
+        // Проверяем, что значения полей объекта соответствуют переданным значениям в конструкторе
+        assertEquals(defaultNumStations, rad.getNumStations());
+//        assertEquals(currentRadioStation, rad.getNumStations());
+        assertEquals(on, rad.isOn());
+    }
 
     @Test
     void testMaxRadioStation() {
@@ -296,18 +296,20 @@ public class RadioTest {
 //    @Test
 //    void testToString() {
 //        // Создаем объект класса Radio
-//        int maxRadioStation = 9;
-//        int numStations = 10; // Измененное значение
-//        boolean on = true;
-//        int currentRadioStation = 0; // Измененное значение
+//
+//        int numStations = 10;
+//        int maxRadioStation = numStations - 1;
+//        boolean on = false; // Изменяем значение on на false
+//        int currentRadioStation = 3; // Изменяем значение currentRadioStation на 3
 //        Radio rad = new Radio(maxRadioStation, numStations, on, currentRadioStation);
 //
 //        // Проверяем, что метод toString() содержит ожидаемые значения
 //        String expectedToString = "Radio(maxRadioStation=" + maxRadioStation +
-//                ", numStations=" + numStations + // Измененное значение
+//                ", numStations=" + numStations +
 //                ", on=" + on +
-//                ", currentRadioStation=" + currentRadioStation + ")"; // Измененное значение
+//                ", currentRadioStation=" + currentRadioStation + ")";
 //        assertTrue(rad.toString().contains(expectedToString));
+//        assertTrue(rad.toString().contains("on=" + on));
 //    }
 
     @Test

@@ -1,11 +1,12 @@
 package ru.netology.quamid59;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @SuppressWarnings("ALL")
-//@AllArgsConstructor
-@NoArgsConstructor// (force = true) // Указываем Lombok использовать конструктор без параметров
+@AllArgsConstructor
+@NoArgsConstructor (force = true) // Указываем Lombok использовать конструктор без параметров
 @Data
 
 public class Radio {
@@ -28,16 +29,29 @@ public class Radio {
     // Конструктор с одним параметром
 
     public Radio(int numStations, int stations, boolean on, int currentRadioStation) {
-            this.numStations = numStations;
-            this.maxRadioStation = numStations - 1;
+        this.numStations = numStations;
+        this.maxRadioStation = numStations - 1;
+        this.on = on;
+        this.currentRadioStation = currentRadioStation;
+
         }
 
     public int getCurrentRadioStation() {
         return currentRadioStation;
     }
+    public int getNumStations() {
+        return numStations;
+    }
+    public void setNumStations(int numStations) {
+        this.numStations = numStations;
+    }
 
     public void setCurrentRadioStation(int currentRadioStation) {
         this.currentRadioStation = currentRadioStation;
+    }
+
+    public void setOn(boolean on) {
+        this.on = on;
     }
 
     public void setSelectRadioStation(int selectRadioStation) {
@@ -85,6 +99,14 @@ public class Radio {
         } else {
             this.currentRadioVolume = currentRadioVolume - 1;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Radio(maxRadioStation=" + maxRadioStation +
+                ", numStations=" + numStations +
+                ", on=" + on +
+                ", currentRadioStation=" + currentRadioStation + ")";
     }
 
     public boolean isOn() {
