@@ -1,13 +1,13 @@
 package ru.netology.quamid59;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RadioTest {
+    private static final int DEFAULT_NUM_STATIONS = 10;
+
     @ParameterizedTest
     @CsvSource(value = {
             "5, 5",   // анализ критического пути
@@ -21,7 +21,7 @@ public class RadioTest {
             "10, 0",  // верхняя граница
     })
     void setSelectRadioStation(int inputSelectRadioStation, int expectedRadioStation) {
-        Radio rad = new Radio(10);
+        Radio rad = new Radio(DEFAULT_NUM_STATIONS);
         rad.setSelectRadioStation(inputSelectRadioStation);
         assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
     }
@@ -86,7 +86,7 @@ public class RadioTest {
 
     })
     void setNextRadioStation(int oldCurrentRadioStation, int expectedRadioStation) {
-        Radio rad = new Radio(10);
+        Radio rad = new Radio(DEFAULT_NUM_STATIONS);
         rad.setCurrentRadioStation(oldCurrentRadioStation);
         rad.setNextRadioStation();
         assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
@@ -102,7 +102,7 @@ public class RadioTest {
 
     })
     void setPrevRadioStation(int oldSelectRadioStation, int expectedRadioStation) {
-        Radio rad = new Radio(10);
+        Radio rad = new Radio(DEFAULT_NUM_STATIONS);
         rad.setSelectRadioStation(oldSelectRadioStation);
         rad.setPrevRadioStation();
         assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
