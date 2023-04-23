@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @SuppressWarnings("ALL")
 @AllArgsConstructor
-@NoArgsConstructor (force = true) // Указываем Lombok использовать конструктор без параметров
+@NoArgsConstructor// (force = true) // Указываем Lombok использовать конструктор без параметров
 @Data
 
 public class Radio {
@@ -101,13 +101,13 @@ public class Radio {
         }
     }
 
-    @Override
-    public String toString() {
-        return "Radio(maxRadioStation=" + maxRadioStation +
-                ", numStations=" + numStations +
-                ", on=" + on +
-                ", currentRadioStation=" + currentRadioStation + ")";
-    }
+//    @Override
+//    public String toString() {
+//        return "Radio(maxRadioStation=" + maxRadioStation +
+//                ", numStations=" + numStations +
+//                ", on=" + on +
+//                ", currentRadioStation=" + currentRadioStation + ")";
+//    }
 
     public boolean isOn() {
         return on;
