@@ -6,7 +6,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RadioTest {
-    private static final int DEFAULT_NUM_STATIONS = 10;
 
     @ParameterizedTest
     @CsvSource(value = {
@@ -21,7 +20,7 @@ public class RadioTest {
             "10, 0",  // верхняя граница
     })
     void setSelectRadioStation(int inputSelectRadioStation, int expectedRadioStation) {
-        Radio rad = new Radio(DEFAULT_NUM_STATIONS);
+        Radio rad = new Radio();
         rad.setSelectRadioStation(inputSelectRadioStation);
         assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
     }
@@ -86,7 +85,7 @@ public class RadioTest {
 
     })
     void setNextRadioStation(int oldCurrentRadioStation, int expectedRadioStation) {
-        Radio rad = new Radio(DEFAULT_NUM_STATIONS);
+        Radio rad = new Radio();
         rad.setCurrentRadioStation(oldCurrentRadioStation);
         rad.setNextRadioStation();
         assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
@@ -102,7 +101,7 @@ public class RadioTest {
 
     })
     void setPrevRadioStation(int oldSelectRadioStation, int expectedRadioStation) {
-        Radio rad = new Radio(DEFAULT_NUM_STATIONS);
+        Radio rad = new Radio();
         rad.setSelectRadioStation(oldSelectRadioStation);
         rad.setPrevRadioStation();
         assertEquals(rad.getCurrentRadioStation(), expectedRadioStation);
@@ -117,7 +116,7 @@ public class RadioTest {
             "100, 100", // верхняя граница
     })
     public void setNextRadioVolume(int oldCurrentRadioVolume, int expectedRadioVolume) {
-        Radio rad = new Radio();
+        Radio rad = new Radio(12);
         rad.setCurrentRadioVolume(oldCurrentRadioVolume);
         rad.setNextRadioVolume();
         assertEquals(rad.getCurrentRadioVolume(), expectedRadioVolume);
@@ -132,7 +131,7 @@ public class RadioTest {
             "100, 99", // верхняя граница
     })
     public void setPrevRadioVolume(int oldCurrentRadioVolume, int expectedRadioVolume) {
-        Radio rad = new Radio();
+        Radio rad = new Radio(12);
         rad.setCurrentRadioVolume(oldCurrentRadioVolume);
         rad.setPrevRadioVolume();
         assertEquals(rad.getCurrentRadioVolume(), expectedRadioVolume);

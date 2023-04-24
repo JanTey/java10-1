@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 
 public class Radio {
 
-int minRadioStation = 0;
-    int maxRadioStation;
+    int minRadioStation = 0;
+    int maxRadioStation = 9;
     int currentRadioStation;
 
     int minRadioVolume = 0;
@@ -23,7 +23,7 @@ int minRadioStation = 0;
     public Radio(int numStations) {
         this.numStations = numStations;
         this.maxRadioStation = numStations - 1;
-        }
+    }
 
 //    public int getCurrentRadioStation() {
 //        return currentRadioStation;
